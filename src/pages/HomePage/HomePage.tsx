@@ -1,15 +1,20 @@
-import {Helmet} from "react-helmet";
-import {TestDiv} from "./styled";
+import { Helmet } from 'react-helmet'
+
+import {PageWrapper} from 'App.styled'
 
 const HomePage: React.FC = () => {
-    return <>
-    <Helmet>
+  return (
+    <>
+      <Helmet>
         <title>Главная - Marketplace</title>
         <meta name="description" content="Главная страница маркетплейса" />
-    </Helmet>
-    <h1>Главная</h1>
-    <TestDiv />
+      </Helmet>
+      
+      <PageWrapper>
+        <h1>Главная</h1>
+      </PageWrapper>
     </>
+  )
 }
 
 export default HomePage
