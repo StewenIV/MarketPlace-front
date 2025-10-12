@@ -1,6 +1,10 @@
 import { Helmet } from 'react-helmet'
 
-import {PageWrapper} from 'App.styled'
+import { PageWrapper } from 'App.styled'
+import { ProductGroup } from './styled'
+import { ProductGroupContainer } from './styled'
+import ProductCard from 'blocks/ProductCard/ProductCard'
+import { dummyProducts } from 'pages/ProductDetailsPage/dummyProduct'
 
 const HomePage: React.FC = () => {
   return (
@@ -9,9 +13,16 @@ const HomePage: React.FC = () => {
         <title>Главная - Marketplace</title>
         <meta name="description" content="Главная страница маркетплейса" />
       </Helmet>
-      
+
       <PageWrapper>
-        <h1>Главная</h1>
+        <ProductGroup>
+          <h2>Рекомендуемые товары</h2>
+          <ProductGroupContainer>
+            {dummyProducts.map((p) => (
+              <ProductCard {...p} key={p.id} />
+            ))}
+          </ProductGroupContainer>
+        </ProductGroup>
       </PageWrapper>
     </>
   )
