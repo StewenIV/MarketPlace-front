@@ -64,7 +64,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         <Link to={`/product/${slug || id}`}>{title}</Link>
       </Title>
       <Desc>{description}</Desc>
-      <Button disabled={true}>В корзину</Button>
+      <Button type = "primary" disabled={false}>В корзину</Button>
     </Wrapper>
   )
 }

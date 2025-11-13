@@ -24,7 +24,7 @@ const Button = styled(
   )
 )`
   user-select: none;
-  border: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
   border-radius: 5px;
   display: inline-flex;
   align-items: center;
@@ -37,7 +37,10 @@ const Button = styled(
 
   border: 1px solid
     ${(p) => (p.type === 'ghost' ? colors.primary : 'transparent')};
-  background-color: ${(p) => {
+  
+    background-color: ${(p) => {
+      if(p.disabled) return '#c2c2c2';
+      
     switch (p.type) {
       case 'primary':
         return colors.primary
@@ -53,11 +56,11 @@ const Button = styled(
   color: ${(p) => {
     switch (p.type) {
       case 'primary':
-        return colors.primary
+        return '#fff'
       case 'secondary':
-        return colors.secondary
+        return '#fff'
       case 'ghost':
-        return 'transparent'
+        return 'colors.primary'
       default:
         return '#fff'
     }

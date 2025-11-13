@@ -16,10 +16,10 @@ export const PriceWrapper = styled.div`
 `
 
 export const PriceRegular = styled.div`
-font-size: 18px;
-font-weight: 700;
-margin-right: 10px;  
-color: ${colors.primary};
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 10px;
+  color: ${colors.primary};
 `
 
 export const PriceRegularWhenDisconted = styled.div`

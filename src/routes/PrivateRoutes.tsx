@@ -13,8 +13,7 @@ const PrivateRoutes: React.FC = () => {
     <Routes>
       <Route path={paths.accountSettings} element={<AccountSettingsPage />} />
       <Route
-        path="*"
-        element={!isMatch ? <Navigate to={paths.HOME} /> : null}
+        path="*" element={!isMatch ? <Navigate to={paths.HOME} /> : null}
       />
     </Routes>
   )
