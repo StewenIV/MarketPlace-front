@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import Button from 'components/Button'
+import Button from 'components/Button/Button'
 
 import { ReactComponent as HearsEmpty } from 'img/heart-empty.svg'
 
@@ -51,9 +51,9 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
       <PriceWrapper>
         {Number.isInteger(priceDiscounted) ? (
           <>
-            <PriceDisconted>{priceDiscounted} Р</PriceDisconted>
+            <PriceDisconted>{priceDiscounted} ₽</PriceDisconted>
             <PriceRegularWhenDisconted>
-              {priceRegular} Р
+              {priceRegular} ₽
             </PriceRegularWhenDisconted>
           </>
         ) : (
@@ -64,7 +64,9 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         <Link to={`/product/${slug || id}`}>{title}</Link>
       </Title>
       <Desc>{description}</Desc>
-      <Button type = "primary" disabled={false}>В корзину</Button>
+      <Button type="primary" disabled={false}>
+        В корзину
+      </Button>
     </Wrapper>
   )
 }

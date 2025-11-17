@@ -1,4 +1,9 @@
-import {ThunkAction, Action, CaseReducer, PayloadAction} from '@reduxjs/toolKit'
+import {
+  ThunkAction,
+  Action,
+  CaseReducer,
+  PayloadAction
+} from '@reduxjs/toolkit'
 
 import store from 'store'
 
@@ -11,3 +16,4 @@ export type T_AppThunk<T_ReturnType = void> = ThunkAction<
 >
 export type T_Dispatch = typeof store.dispatch
 export type T_Reducer<T, K = any> = CaseReducer<T, PayloadAction<K>>
+export type T_PayloadAction<K> = PayloadAction<K>
