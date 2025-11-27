@@ -27,9 +27,17 @@ export const Wrapper = styled.div`
 `
 export const LeftSide = styled.div`
   display: flex;
+  flex-shrink: 0;
+  margin-right: 10px;
+
+  > button {
+    height: 44px;
+  }
 `
 export const Logo = styled.img`
-  height: 32px;
+  width: 50px;
+  height: 44px;
+  margin-right: 10px;
 `
 export const Burger = styled.div`
   width: 20px;
@@ -58,7 +66,7 @@ export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 10px 0 10px;
-  margin: 0 10px;
+  margin: 0 10px 0 5px;
 `
 export const BtnSearch = styled.div`
   cursor: pointer;
@@ -92,7 +100,7 @@ export const BtnOrders = styled((props: any) => (
 
   &:after {
     content: ${({ count }) => (count ? `' ${count} '` : '')};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -119,7 +127,7 @@ export const Btnfavorites = styled((props: any) => (
 
   &:after {
     content: ${({ count }) => (count ? `' ${count} '` : '')};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -143,7 +151,7 @@ export const BtnNotifications = styled.div<I_CountProps>`
 
   &:after {
     content: ${({ count }) => (count ? `' ${count} '` : '')};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -167,7 +175,7 @@ export const BtnCart = styled.div<I_CountProps>`
 
   &:after {
     content: ${({ count }) => (count ? `' ${count} '` : '')};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;

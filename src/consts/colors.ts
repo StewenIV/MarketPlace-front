@@ -1,6 +1,6 @@
 const colors: {[k :string]: string} = {
 primary: '#3498db',
-red: '#f00'
+danger: '#e83f3f'
 }
 
 export default colors;

@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
-import { Wrapper, InputItself, Label, TogglePasswordVisibility } from './styled'
+import { 
+  Wrapper, 
+  InputItself,
+  Label,
+  TogglePasswordVisibility } from './styled'
 
 interface I_InputProps {
   value: string

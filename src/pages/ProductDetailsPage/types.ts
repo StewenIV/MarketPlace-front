@@ -5,5 +5,6 @@ export interface I_ProductDetails {
   priceRegular: number
   priceDiscounted?: number
   title: string
+  isLiked: boolean
   description: string
 }

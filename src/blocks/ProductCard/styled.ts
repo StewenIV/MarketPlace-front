@@ -37,8 +37,8 @@ export const PriceDisconted = styled.div`
 
 export const LikeWrapper = styled.div`
   cursor: pointer;
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: 0;
   right: 0;
@@ -60,4 +60,20 @@ export const Desc = styled.div`
 `
 export const Wrapper = styled.div`
   position: relative;
+  padding: 15px;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  & :last-child {
+    margin-top: 10px;
+  }
 `

@@ -5,7 +5,7 @@ import { useOnClickOutside} from 'helpers/hooks/useOnClickOutside'
 
 
 interface I_DropDownPanel{
-  toggler: any
+  toggler: (props: any ) => React.ReactElement
   children: React.ReactElement
   toLeft?: boolean
 }

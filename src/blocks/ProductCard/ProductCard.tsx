@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import Button from 'components/Button/Button'
 
 import { ReactComponent as HearsEmpty } from 'img/heart-empty.svg'
+import { ReactComponent as HeartFilled } from 'img/heart-filled.svg'
 
 import {
   Wrapper,
@@ -13,8 +14,13 @@ import {
   PriceRegularWhenDisconted,
   PriceDisconted,
   Title,
+  BtnWrapper,
   Desc
 } from './styled'
+import { useCallback, useMemo } from 'react'
+import { useDispatch } from 'react-redux'
+import { addtoFavorites, removeFromFavorites } from 'features/Favorites/reducer'
+import { paths } from 'routes/helper'
 
 interface I_ProductCardProps {
   id: number
@@ -24,7 +30,7 @@ interface I_ProductCardProps {
   priceDiscounted?: number
   title: string
   description: string
-  //isLiked: boolean
+  isLiked: boolean
   hideLikes?: boolean
 }
 
@@ -36,15 +42,45 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
   priceDiscounted,
   title,
   description,
+  isLiked,
   hideLikes = false
 }) => {
+  const dispatch = useDispatch<any>()
+  const location = useLocation()
+
+  const isFavoritesPage = useMemo(
+    () => location.pathname === paths.favorites,
+    [location.pathname]
+  )
+
+  const removeFavorite = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      dispatch(removeFromFavorites(+e.currentTarget.dataset.productId!))
+    },
+    [dispatch]
+  )
+
+  const handleFavorites = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      const { productId } = e.currentTarget.dataset
+
+      dispatch(
+        !isLiked
+          ? addtoFavorites(+productId!)
+          : removeFromFavorites(+productId!)
+      )
+    },
+    [dispatch, isLiked]
+  )
+
   return (
     <Wrapper>
       {!hideLikes && (
-        <LikeWrapper data-product-id={id}>
-          <HearsEmpty />
+        <LikeWrapper data-product-id={id} onClick={handleFavorites}>
+          {isLiked ? <HeartFilled /> : <HearsEmpty />}
         </LikeWrapper>
       )}
+
       <Link to={`/product/${slug || id}`}>
         <Image src={imgSrc} alt={title} />
       </Link>
@@ -64,9 +100,20 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         <Link to={`/product/${slug || id}`}>{title}</Link>
       </Title>
       <Desc>{description}</Desc>
-      <Button type="primary" disabled={false}>
-        В корзину
-      </Button>
+      <BtnWrapper>
+        <Button block>В корзину</Button>
+
+        {isFavoritesPage && (
+          <Button
+            type="danger"
+            block
+            onClick={removeFavorite}
+            data-product-id={id}
+          >
+            Удалить
+          </Button>
+        )}
+      </BtnWrapper>
     </Wrapper>
   )
 }

@@ -15,7 +15,7 @@ const initialState: I_UserData = {
     gender: null,
 }
 
-const setUserDataAction = createAction<I_UserData>('USER_DATA/setUserData');
+const setUserDataAction = createAction<I_UserData>('USER_DATA/set');
 
 const userDataReducer = createReducer(initialState, (builder) => {
     builder.addCase(setUserDataAction, (_, action) => action.payload)

@@ -17,7 +17,7 @@ const UserDropDownMenu: React.FC = () => {
 
   return (
     <DropDownPanel
-        toggler = {(props: any) => <UserAvatar onClick={props.onClick} />}
+        toggler = {(props) => <UserAvatar onClick={props.onClick} />}
         toLeft>
             <UserProfileDropDown>
                 <div>
