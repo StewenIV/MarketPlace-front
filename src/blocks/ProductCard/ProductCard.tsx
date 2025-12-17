@@ -18,14 +18,14 @@ import {
   Desc
 } from './styled'
 import { useCallback, useMemo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from 'store'
 import { addtoFavorites, removeFromFavorites } from 'features/Favorites/reducer'
 import { paths } from 'routes/helper'
 
 interface I_ProductCardProps {
   id: number
   slug?: string
-  imgSrc: string
+  image: string
   priceRegular: number
   priceDiscounted?: number
   title: string
@@ -37,7 +37,7 @@ interface I_ProductCardProps {
 const ProductCard: React.FC<I_ProductCardProps> = ({
   id,
   slug,
-  imgSrc,
+  image,
   priceRegular,
   priceDiscounted,
   title,
@@ -45,7 +45,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
   isLiked,
   hideLikes = false
 }) => {
-  const dispatch = useDispatch<any>()
+  const dispatch = useAppDispatch()
   const location = useLocation()
 
   const isFavoritesPage = useMemo(
@@ -82,7 +82,10 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
       )}
 
       <Link to={`/product/${slug || id}`}>
-        <Image src={imgSrc} alt={title} />
+        <Image
+          src={`${process.env.REACT_APP_API_URL}/images/products/${image}`}
+          alt={title}
+        />
       </Link>
       <PriceWrapper>
         {Number.isInteger(priceDiscounted) ? (
@@ -93,7 +96,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
             </PriceRegularWhenDisconted>
           </>
         ) : (
-          <PriceRegular>{priceRegular} Р</PriceRegular>
+          <PriceRegular>{priceRegular} ₽</PriceRegular>
         )}
       </PriceWrapper>
       <Title className="h4">

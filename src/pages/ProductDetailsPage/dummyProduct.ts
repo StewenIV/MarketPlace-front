@@ -1,6 +1,6 @@
-import { I_ProductDetails } from './types'
+//import { I_ProductDetails } from './types'
 
-export const dummyProducts: I_ProductDetails[] = [
+export const dummyProducts: any = [
   {
     id: 1,
     slug: 'iphone-14-pro',

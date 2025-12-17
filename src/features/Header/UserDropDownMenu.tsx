@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useAppSelector } from 'store'
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ import { UserProfileDropDown } from './styled'
 const UserDropDownMenu: React.FC = () => {
   const navigate = useNavigate()
 
-  const { nameFirst, nameLast, displayName } = useSelector(selectUserData)
+  const { nameFirst, nameLast, displayName } = useAppSelector(selectUserData)
 
   const handleLogout = useCallback(() => navigate(paths.logout), [navigate])
 

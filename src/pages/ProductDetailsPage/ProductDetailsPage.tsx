@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from 'store'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
+import { get } from 'helpers/request'
 
 import { addtoFavorites, removeFromFavorites } from 'features/Favorites/reducer'
 import { selectFavorites } from 'features/Favorites/selector'
-import { dummyProducts } from './dummyProduct'
+//import { dummyProducts } from './dummyProduct'
 import { I_ProductDetails } from './types'
 import { ReactComponent as HeartEmpty } from 'img/heart-empty.svg'
 import { ReactComponent as HeartFilled } from 'img/heart-filled.svg'
@@ -23,26 +24,23 @@ import {
 } from './styled'
 
 import { PageWrapper } from 'App.styled'
+import { I_UniRes } from 'type'
 
 const ProductDetailsPage: React.FC = () => {
   const params = useParams()
-  const dispatch = useDispatch<any>()
+  const dispatch = useAppDispatch()
 
   const [ProductDetails, setProductDetails] = useState<I_ProductDetails | null>(
     null
   )
 
   useEffect(() => {
-    const found = dummyProducts.find((p) =>
-      [String(p.id), p.slug].includes(params.idOrSlug)
+    get(`/products/${params.idOrSlug}`).then((res: I_UniRes) =>
+      setProductDetails(res.data.productData)
     )
-
-    if (found) {
-      setProductDetails(found)
-    }
   }, [params.idOrSlug])
 
-  const idsInFavorites = useSelector(selectFavorites)
+  const idsInFavorites = useAppSelector(selectFavorites)
 
   const isLiked = useMemo(() => {
     return idsInFavorites.includes(ProductDetails?.id!)
@@ -63,7 +61,7 @@ const ProductDetailsPage: React.FC = () => {
 
   if (!ProductDetails) return null
 
-  const { id, imgSrc, title, description, priceRegular, priceDiscounted } =
+  const { id, image, title, description, priceRegular, priceDiscounted } =
     ProductDetails
 
   return (
@@ -76,7 +74,10 @@ const ProductDetailsPage: React.FC = () => {
       <PageWrapper>
         <Wrapper>
           <ImagesWrapper>
-            <Image src={imgSrc} alt={title} />
+            <Image
+              src={`${process.env.REACT_APP_API_URL}/images/products/${image}`}
+              alt={title}
+            />
 
             <LikeWrapper data-product-id={id} onClick={handleFavorites}>
               {isLiked ? <HeartFilled /> : <HeartEmpty />}
@@ -85,7 +86,6 @@ const ProductDetailsPage: React.FC = () => {
 
           <InfoWrapper>
             <h1>{title}</h1>
-            <p>{description}</p>
 
             <PriceWrapper>
               {Number.isInteger(priceDiscounted) ? (
@@ -99,6 +99,8 @@ const ProductDetailsPage: React.FC = () => {
                 <PriceRegular>{priceRegular} ₽</PriceRegular>
               )}
             </PriceWrapper>
+
+            <p>{description}</p>
           </InfoWrapper>
         </Wrapper>
       </PageWrapper>
