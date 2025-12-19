@@ -24,7 +24,7 @@ import {
 } from './styled'
 
 import { PageWrapper } from 'App.styled'
-import { I_UniRes } from 'type'
+import { I_UniRes } from 'types'
 
 const ProductDetailsPage: React.FC = () => {
   const params = useParams()

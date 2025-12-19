@@ -9,7 +9,7 @@ import { selectFavorites } from 'features/Favorites/selector'
 import { get } from 'helpers/request'
 //import { dummyProducts } from 'pages/ProductDetailsPage/dummyProduct'
 import { useEffect, useState } from 'react'
-import { I_UniRes } from 'type'
+import { I_UniRes } from 'types'
 
 const HomePage: React.FC = () => {
   const idInFavorites = useAppSelector(selectFavorites)
@@ -19,7 +19,6 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     get('/products').then((res: I_UniRes) => setProducts(res.data))
   }, [])
-
 
   if (!products) {
     return <div>Loading...</div>

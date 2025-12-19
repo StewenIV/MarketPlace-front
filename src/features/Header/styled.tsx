@@ -60,13 +60,18 @@ export const Burger = styled.div`
 `
 export const SearchWrapper = styled.div`
   width: 100%;
-  height: 40px;
-  border-radius: 4px;
   border: 2px solid ${colors.primary};
+  border-radius: 4px;
   display: flex;
   align-items: center;
-  padding: 0 10px 0 10px;
-  margin: 0 10px 0 5px;
+  padding: 0 10px;
+  margin-right: 10px;
+
+  input {
+    font-size: 16px;
+    line-height: 40px;
+    padding: 0;
+  }
 `
 export const BtnSearch = styled.div`
   cursor: pointer;
@@ -79,12 +84,6 @@ export const RightSide = styled.div`
   flex-shrink: 0;
   align-items: center;
 `
-/* a:not([href*='login']){
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;}*/
 
 export const BtnOrders = styled((props: any) => (
   <div {...props}>
