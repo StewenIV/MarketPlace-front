@@ -26,7 +26,7 @@ interface I_ProductCardProps {
   id: number
   slug?: string
   image: string
-  priceRegular: number
+  price: number
   priceDiscounted?: number
   title: string
   description: string
@@ -38,7 +38,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
   id,
   slug,
   image,
-  priceRegular,
+  price,
   priceDiscounted,
   title,
   description,
@@ -92,11 +92,11 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
           <>
             <PriceDisconted>{priceDiscounted} ₽</PriceDisconted>
             <PriceRegularWhenDisconted>
-              {priceRegular} ₽
+              {price} ₽
             </PriceRegularWhenDisconted>
           </>
         ) : (
-          <PriceRegular>{priceRegular} ₽</PriceRegular>
+          <PriceRegular>{price} ₽</PriceRegular>
         )}
       </PriceWrapper>
       <Title className="h4">

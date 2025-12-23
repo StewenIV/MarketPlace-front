@@ -2,7 +2,7 @@ export interface I_ProductDetails {
   id: number
   slug?: string
   image: string
-  priceRegular: number
+  price: number
   priceDiscounted?: number
   title: string
   isLiked: boolean

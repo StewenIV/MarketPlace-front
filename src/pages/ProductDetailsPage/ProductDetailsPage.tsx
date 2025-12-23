@@ -61,7 +61,7 @@ const ProductDetailsPage: React.FC = () => {
 
   if (!ProductDetails) return null
 
-  const { id, image, title, description, priceRegular, priceDiscounted } =
+  const { id, image, title, description, price, priceDiscounted } =
     ProductDetails
 
   return (
@@ -92,11 +92,11 @@ const ProductDetailsPage: React.FC = () => {
                 <>
                   <PriceDiscounted>{priceDiscounted} ₽</PriceDiscounted>
                   <PriceRegularWhenDiscounted>
-                    {priceRegular} ₽
+                    {price} ₽
                   </PriceRegularWhenDiscounted>
                 </>
               ) : (
-                <PriceRegular>{priceRegular} ₽</PriceRegular>
+                <PriceRegular>{price} ₽</PriceRegular>
               )}
             </PriceWrapper>
 
